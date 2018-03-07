@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>geostack</groupId>
-    <artifactId>geostack-version-update</artifactId>
-    <version>2.0.0.0.RELEASE</version>
+    <groupId>com.github.nihaorz</groupId>
+    <artifactId>nihaorz-maven-util</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
 
     <distributionManagement>
         <repository>
@@ -15,26 +15,33 @@
         </repository>
     </distributionManagement>
 
+    <repositories>
+        <repository>
+            <id>github-maven-repo</id>
+            <url>https://raw.githubusercontent.com/nihaorz/maven-repo/master/repository</url>
+        </repository>
+    </repositories>
+
+    <scm>
+        <connection>git@github.com:nihaorz/nihaorz-maven-util.git</connection>
+    </scm>
+
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/log4j/log4j -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>3.7</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/dom4j/dom4j -->
         <dependency>
             <groupId>dom4j</groupId>
             <artifactId>dom4j</artifactId>
             <version>1.6.1</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -44,10 +51,12 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
+        <!-- install的时候安装源码 -->
         <plugins>
             <plugin>
                 <artifactId>maven-source-plugin</artifactId>
@@ -62,6 +71,13 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <!-- 跳过测试 -->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
             </plugin>
         </plugins>
     </build>
